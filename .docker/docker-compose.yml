@@ -1,0 +1,30 @@
+#https://knplabs.com/en/blog/how-to-dockerise-a-symfony-4-project
+version: '3.7'
+services:
+  db:
+    image: mysql:5.7
+    restart: on-failure
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test-db
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+  php:
+    build:
+      context: .
+      dockerfile: ./php/Dockerfile
+    restart: on-failure
+    volumes:
+      - ../:/usr/src/app
+  nginx:
+    image: nginx:1.15.3-alpine
+    restart: on-failure
+    volumes:
+      - ../:/usr/src/app
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - 80:80
+    depends_on:
+      - php
