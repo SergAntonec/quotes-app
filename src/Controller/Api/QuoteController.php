@@ -69,6 +69,7 @@ class QuoteController extends AbstractController
             $request->get('quote', ''),
             $request->get('authorName', '')
         );
+        $this->validateParameters($quoteParameters);
 
         return $this->json($this->quoteService->create($quoteParameters));
     }
