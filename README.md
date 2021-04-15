@@ -1,10 +1,5 @@
  
  #####Please create a basic entity for storing quotes. It should contain information about author and type. Please create a CRUD. Code should be compatible with Symfony 5.1 and PHP 7.4 best practices.
- 
-I am a little misunderstood what you mean here: *It should contain information about author and type*
-
-So, I just add field author_name to the `quote` table . You can see here src/Entity/Quote.php
-
 
 ###How to test it
  
